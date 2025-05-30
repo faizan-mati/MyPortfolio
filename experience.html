@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faizan Mati - Skills & Experience</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF4757;
+            --primary-dark: #e63946;
+            --bg-light: #f8f9fa;
+            --bg-dark: #0a0a0a;
+            --text-light: #333;
+            --text-dark: #fff;
+            --sidebar-light: #fff;
+            --sidebar-dark: #1a1a1a;
+            --card-light: #fff;
+            --card-dark: #333;
+            --gradient-primary: linear-gradient(135deg, #FF4757, #ff6b7a);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* Light Theme */
+        body.light-theme {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-light);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            color: var(--text-dark);
+        }
+
+        /* Modern Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .light-theme .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            border-right: 1px solid rgba(255, 71, 87, 0.1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .sidebar {
+            background: rgba(26, 26, 26, 0.95);
+            border-right: 1px solid rgba(255, 71, 87, 0.2);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .logo:hover::before {
+            left: 0;
+        }
+
+        .logo h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .logo h2::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -15px;
+            width: 20px;
+            height: 20px;
+            border-top: 4px solid var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 3px;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+
+        .logo h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: -15px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 4px solid var(--primary-color);
+            border-right: 4px solid var(--primary-color);
+            border-radius: 3px;
+            opacity: 0.8;
+            animation: pulse 2s infinite 1s;
+        }
+
+        /* Centered Navigation Menu */
+        .nav-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem 1.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1.2rem 2rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 15px;
+            position: relative;
+            width: 100%;
+            max-width: 220px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .light-theme .nav-item {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-theme .nav-item {
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .nav-item:hover::before,
+        .nav-item.active::before {
+            left: 0;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+            transform: translateX(10px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+        }
+
+        .nav-item i {
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            width: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .nav-item span {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer in sidebar */
+        .sidebar-footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 71, 87, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 300px;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Modern Theme Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.5);
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill-category {
+            padding: 1.5rem;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-theme .skill-category {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 71, 87, 0.2);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .skill-category:hover::before {
+            left: 0;
+        }
+
+        .skill-category h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-category h3 i {
+            font-size: 2rem;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .light-theme .skill-item:hover {
+            background: rgba(255, 71, 87, 0.05);
+        }
+
+        .dark-theme .skill-item:hover {
+            background: rgba(255, 71, 87, 0.1);
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .skill-level {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .expert {
+            background: linear-gradient(135deg, #FF4757, #ff6b7a);
+            color: white;
+        }
+
+        .proficient {
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            color: white;
+        }
+
+        .familiar {
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: white;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            margin-bottom: 5rem;
+        }
+
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-primary);
+            transform: translateX(-50%);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 4rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .experience-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .experience-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .experience-content {
+            flex: 1;
+            max-width: 45%;
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        .light-theme .experience-content {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .experience-content {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .experience-content:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 71, 87, 0.2);
+        }
+
+        .experience-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            border: 4px solid;
+            z-index: 2;
+        }
+
+        .light-theme .experience-dot {
+            border-color: #f5f7fa;
+        }
+
+        .dark-theme .experience-dot {
+            border-color: #0c0c0c;
+        }
+
+        .experience-date {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-achievements {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-achievements li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .experience-achievements li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Education Section */
+        .education-section {
+            margin-bottom: 5rem;
+        }
+
+        .education-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .education-card {
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .light-theme .education-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 71, 87, 0.2);
+        }
+
+        .education-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .education-degree {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-institution {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .education-date {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .education-details {
+            line-height: 1.6;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1001;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 71, 87, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Overlay for mobile */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-timeline::before {
+                left: 30px;
+            }
+
+            .experience-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                padding-left: 60px;
+            }
+
+            .experience-content {
+                max-width: 100%;
+            }
+
+            .experience-dot {
+                left: 30px;
+                top: 2rem;
+            }
+
+            .education-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 1.5rem;
+                right: 5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skill-category,
+            .experience-content,
+            .education-card {
+                padding: 1.5rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .page-header,
+        .skills-section,
+        .experience-section,
+        .education-section {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .page-header {
+            animation-delay: 0.1s;
+        }
+
+        .skills-section {
+            animation-delay: 0.2s;
+        }
+
+        .experience-section {
+            animation-delay: 0.3s;
+        }
+
+        .education-section {
+            animation-delay: 0.4s;
+        }
+
+        .skill-category,
+        .experience-item,
+        .education-card {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .skill-category:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .skill-category:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .skill-category:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .skill-category:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .experience-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .experience-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .education-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .education-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .education-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+    </style>
+</head>
+
+<body class="light-theme">
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Modern Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <h2>Atlas</h2>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="./index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="./about.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+            </a>
+            <a href="./experience.html" class="nav-item active">
+                <i class="fas fa-cog"></i>
+                <span>Experience</span>
+            </a>
+            <a href="./portfolio.html" class="nav-item">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="./contact.html" class="nav-item">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="social-links">
+                <a href="https://github.com/faizan-mati" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/faizan-mati/" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>Skills & Experience</h1>
+            <p>Full Stack MERN Developer with 1.5+ years of professional experience, specializing in modern web
+                technologies and leading development teams to create innovative solutions.</p>
+        </div>
+
+
+        <!-- Experience Section -->
+        <section class="experience-section">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <div class="experience-date">2023 - Present</div>
+                        <h3 class="experience-title">Full Stack MERN Developer</h3>
+                        <h4 class="experience-company">Tech Solutions Inc.</h4>
+                        <p class="experience-description">
+                            Leading development of modern web applications using the MERN stack, focusing on scalable
+                            architecture and user experience optimization.
+                        </p>
+                        <ul class="experience-achievements">
+                            <li>Developed and deployed 5+ full-stack applications using React.js, Node.js, and MongoDB
+                            </li>
+                            <li>Led a team of 3 junior developers, improving code quality by 40%</li>
+                            <li>Implemented RESTful APIs serving 10,000+ daily requests</li>
+                            <li>Optimized application performance, reducing load times by 35%</li>
+                            <li>Integrated secure authentication systems using JWT and OAuth</li>
+                        </ul>
+                    </div>
+                    <div class="experience-dot"></div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-content">
+                        <div class="experience-date">2022 - 2023</div>
+                        <h3 class="experience-title">Frontend Developer</h3>
+                        <h4 class="experience-company">Digital Agency Pro</h4>
+                        <p class="experience-description">
+                            Specialized in creating responsive and interactive user interfaces for various client
+                            projects using modern frontend technologies.
+                        </p>
+                        <ul class="experience-achievements">
+                            <li>Built 15+ responsive websites using HTML5, CSS3, and JavaScript</li>
+                            <li>Collaborated with design teams to implement pixel-perfect UI/UX designs</li>
+                            <li>Improved website accessibility scores by 50% across all projects</li>
+                            <li>Implemented modern CSS frameworks and animations</li>
+                            <li>Maintained cross-browser compatibility for all deliverables</li>
+                        </ul>
+                    </div>
+                    <div class="experience-dot"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Skills Section -->
+        <section class="skills-section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Frontend Development</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">HTML5</span>
+                        <div class="skill-level">
+                            <span class="skill-badge expert">Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">CSS3</span>
+                        <div class="skill-level">
+                            <span class="skill-badge expert">Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-level">
+                            <span class="skill-badge expert">Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">React.js</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Next.js</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Bootstrap</span>
+                        <div class="skill-level">
+                            <span class="skill-badge expert">Expert</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Backend Development</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Node.js</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Express.js</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">MongoDB</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">MySQL</span>
+                        <div class="skill-level">
+                            <span class="skill-badge familiar">Familiar</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">RESTful APIs</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">JWT Authentication</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Git & GitHub</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">VS Code</span>
+                        <div class="skill-level">
+                            <span class="skill-badge expert">Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Postman</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Docker</span>
+                        <div class="skill-level">
+                            <span class="skill-badge familiar">Familiar</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">AWS</span>
+                        <div class="skill-level">
+                            <span class="skill-badge familiar">Familiar</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Figma</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-mobile-alt"></i> Additional Skills</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Responsive Design</span>
+                        <div class="skill-level">
+                            <span class="skill-badge expert">Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">UI/UX Design</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Team Leadership</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Agile Methodology</span>
+                        <div class="skill-level">
+                            <span class="skill-badge familiar">Familiar</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Problem Solving</span>
+                        <div class="skill-level">
+                            <span class="skill-badge expert">Expert</span>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Code Optimization</span>
+                        <div class="skill-level">
+                            <span class="skill-badge proficient">Proficient</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Education Section -->
+        <!-- <section class="education-section">
+            <h2 class="section-title">Education & Certifications</h2>
+            <div class="education-cards">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="education-degree">Bachelor's in Computer Science</h3>
+                    <h4 class="education-institution">University of Technology</h4>
+                    <p class="education-date">2020 - 2024</p>
+                    <p class="education-details">
+                        Focused on software development, data structures, algorithms, and web technologies. 
+                        Completed capstone project on full-stack web application development.
+                    </p>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3 class="education-degree">MERN Stack Certification</h3>
+                    <h4 class="education-institution">Tech Academy Online</h4>
+                    <p class="education-date">2023</p>
+                    <p class="education-details">
+                        Comprehensive certification covering MongoDB, Express.js, React.js, and Node.js. 
+                        Includes hands-on projects and real-world application development.
+                    </p>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <h3 class="education-degree">AWS Cloud Practitioner</h3>
+                    <h4 class="education-institution">Amazon Web Services</h4>
+                    <p class="education-date">2023</p>
+                    <p class="education-details">
+                        Foundation-level certification covering AWS cloud services, architecture, 
+                        security, and best practices for cloud deployment.
+                    </p>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Resume Download Section -->
+        <section class="resume-section" style="text-align: center; margin-bottom: 4rem;">
+            <h2 class="section-title">Download Resume</h2>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="#" class="resume-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i>
+                    <span>Download PDF Resume</span>
+                </a>
+                <a href="#" class="resume-btn view-btn" id="viewBtn">
+                    <i class="fas fa-eye"></i>
+                    <span>View Online Resume</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fas fa-sun"></i>
+        </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or default to light theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.className = savedTheme + '-theme';
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            body.className = newTheme + '-theme';
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'light') {
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                themeIcon.className = 'fas fa-sun';
+            }
+        }
+
+        // Mobile Sidebar Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        // Navigation Active State
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                // Only prevent default if it's a # link
+                if (item.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+
+                // Remove active class from all items
+                navItems.forEach(nav => nav.classList.remove('active'));
+                // Add active class to clicked item
+                item.classList.add('active');
+
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '100px';
+                ripple.style.height = '100px';
+                ripple.style.marginLeft = '-50px';
+                ripple.style.marginTop = '-50px';
+                item.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+
+                // Close mobile menu
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                    mobileToggle.querySelector('i').className = 'fas fa-bars';
+                }
+            });
+        });
+
+
+        // Resume Download/View Functionality
+        document.getElementById('downloadBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Here you would typically link to your actual resume file
+            alert('Resume download would start here. Please add your resume file path.');
+        });
+
+        document.getElementById('viewBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Here you would typically open your resume in a new tab
+            alert('Resume viewer would open here. Please add your resume file path.');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const href = item.getAttribute('href');
+
+                // Only prevent default for # links
+                if (href === '#') {
+                    e.preventDefault();
+                    return;
+                }
+
+                // For internal links, handle smooth scrolling if needed
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href)?.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                // For other links, allow normal navigation
+
+                // Add active class and ripple effect
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+
+                // Mobile menu handling
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                    mobileToggle.querySelector('i').className = 'fas fa-bars';
+                }
+            });
+        });
+        // Enhanced skill category hover effects
+        const skillCategories = document.querySelectorAll('.skill-category');
+        skillCategories.forEach(category => {
+            category.addEventListener('mouseenter', () => {
+                category.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            category.addEventListener('mouseleave', () => {
+                category.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all skill categories and cards
+        document.querySelectorAll('.skill-category, .experience-item, .education-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+    <style>
+        /* Resume Section Styles */
+        .resume-section {
+            padding: 3rem 0;
+            border-radius: 20px;
+            margin: 4rem 0;
+            backdrop-filter: blur(20px);
+        }
+
+        .light-theme .resume-section {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .resume-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resume-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .resume-btn:hover::before {
+            left: 0;
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 71, 87, 0.4);
+            color: white;
+        }
+
+        .resume-btn i {
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .resume-btn:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            box-shadow: 0 10px 30px rgba(30, 144, 255, 0.3);
+        }
+
+        .view-btn:hover {
+            box-shadow: 0 20px 40px rgba(30, 144, 255, 0.4);
+        }
+
+        /* Additional responsive styles */
+        @media (max-width: 768px) {
+            .resume-btn {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .resume-section {
+                margin: 2rem 0;
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Enhanced animation delays for staggered effect */
+        .skill-category:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .skill-category:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .experience-item:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .experience-item:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        .education-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .education-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>

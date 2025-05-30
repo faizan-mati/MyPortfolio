@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faizan Mati - Portfolio & Skills</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF4757;
+            --primary-dark: #e63946;
+            --bg-light: #f8f9fa;
+            --bg-dark: #0a0a0a;
+            --text-light: #333;
+            --text-dark: #fff;
+            --sidebar-light: #fff;
+            --sidebar-dark: #1a1a1a;
+            --card-light: #fff;
+            --card-dark: #333;
+            --gradient-primary: linear-gradient(135deg, #FF4757, #ff6b7a);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-x: hidden;
+        }
+
+        /* Light Theme */
+        body.light-theme {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-light);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            color: var(--text-dark);
+        }
+
+        /* Modern Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .light-theme .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            border-right: 1px solid rgba(255, 71, 87, 0.1);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .sidebar {
+            background: rgba(26, 26, 26, 0.95);
+            border-right: 1px solid rgba(255, 71, 87, 0.2);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .logo:hover::before {
+            left: 0;
+        }
+
+        .logo h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .logo h2::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -15px;
+            width: 20px;
+            height: 20px;
+            border-top: 4px solid var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 3px;
+            opacity: 0.8;
+            animation: pulse 2s infinite;
+        }
+
+        .logo h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: -15px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 4px solid var(--primary-color);
+            border-right: 4px solid var(--primary-color);
+            border-radius: 3px;
+            opacity: 0.8;
+            animation: pulse 2s infinite 1s;
+        }
+
+        /* Centered Navigation Menu */
+        .nav-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem 1.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 1.2rem 2rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 15px;
+            position: relative;
+            width: 100%;
+            max-width: 220px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .light-theme .nav-item {
+            color: var(--text-light);
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-theme .nav-item {
+            color: var(--text-dark);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+
+        .nav-item:hover::before,
+        .nav-item.active::before {
+            left: 0;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: white;
+            transform: translateX(10px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+        }
+
+        .nav-item i {
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            width: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .nav-item span {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer in sidebar */
+        .sidebar-footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 71, 87, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .social-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 300px;
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Modern Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+            z-index: 999;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.5);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-title span {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 71, 87, 0.1);
+        }
+
+        .light-theme .skill-category {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(255, 71, 87, 0.2);
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .skill-category:hover::before {
+            left: 0;
+        }
+
+        .skill-category h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-category i {
+            font-size: 2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 71, 87, 0.1);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .skill-level {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .skill-level.expert {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .skill-level.proficient {
+            background: linear-gradient(135deg, #007bff, #6610f2);
+        }
+
+        .skill-level.familiar {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-card {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 71, 87, 0.1);
+        }
+
+        .light-theme .portfolio-card {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .portfolio-card {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255, 71, 87, 0.2);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image i {
+            font-size: 4rem;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .portfolio-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .portfolio-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .portfolio-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 71, 87, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 2rem 0 2rem 4rem;
+            border-left: 3px solid var(--primary-color);
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid;
+        }
+
+        .light-theme .timeline-item::before {
+            border-color: #f5f7fa;
+        }
+
+        .dark-theme .timeline-item::before {
+            border-color: #0c0c0c;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 71, 87, 0.1);
+        }
+
+        .light-theme .timeline-content {
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-achievements {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-achievements li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-achievements li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        /* Mobile Responsiveness */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 1001;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 71, 87, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .theme-toggle {
+                top: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                padding-left: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skill-category {
+                padding: 1.5rem;
+            }
+
+            .portfolio-content {
+                padding: 1.5rem;
+            }
+
+            .timeline-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Overlay for mobile */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .skill-category,
+        .portfolio-card,
+        .timeline-item {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+
+        .skill-category:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .skill-category:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .skill-category:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .portfolio-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .portfolio-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .portfolio-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .timeline-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .timeline-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+
+<body class="light-theme">
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" id="mobileToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Modern Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <h2>Atlas</h2>
+        </div>
+
+      <nav class="nav-menu">
+            <a href="./index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="./about.html" class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+            </a>
+            <a href="./experience.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Experience</span>
+            </a>
+            <a href="./portfolio.html" class="nav-item active">
+                <i class="fas fa-briefcase"></i>
+                <span>Portfolio</span>
+            </a>
+            <a href="./contact.html" class="nav-item">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/faizan-mati" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/faizan-mati" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2 class="section-title">My <span>Skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Expert Level</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">HTML5</span>
+                        <span class="skill-level expert">Expert</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">CSS3</span>
+                        <span class="skill-level expert">Expert</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <span class="skill-level expert">Expert</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">React.js</span>
+                        <span class="skill-level expert">Expert</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Bootstrap</span>
+                        <span class="skill-level expert">Expert</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Proficient Level</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">Node.js</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Express.js</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">MongoDB</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Next.js</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Firebase</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">WordPress</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">PHP</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">MySQL</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Python</span>
+                        <span class="skill-level proficient">Proficient</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Familiar Level</h3>
+                    <div class="skill-item">
+                        <span class="skill-name">C#</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">.NET</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">SQL Server</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Git</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Docker</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">AWS</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">GraphQL</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">TypeScript</span>
+                        <span class="skill-level familiar">Familiar</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="section" id="portfolio">
+            <h2 class="section-title">My <span>Portfolio</span></h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">E-Commerce Platform</h3>
+                        <p class="portfolio-description">
+                            A full-stack e-commerce solution built with React.js and Node.js, featuring user
+                            authentication,
+                            payment integration, and admin dashboard for inventory management.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Stripe API</span>
+                        </div>
+                        <div class="portfolio-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">15+</div>
+                                <div class="stat-label">Features</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">98%</div>
+                                <div class="stat-label">Performance</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <i class="fas fa-blog"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Blog Management System</h3>
+                        <p class="portfolio-description">
+                            A comprehensive blog platform with rich text editor, category management,
+                            user roles, and SEO optimization built with Next.js and Firebase.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Vercel</span>
+                        </div>
+                        <div class="portfolio-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">12+</div>
+                                <div class="stat-label">Features</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">2</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label">SEO Score</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Task Management App</h3>
+                        <p class="portfolio-description">
+                            A collaborative task management application with real-time updates,
+                            team collaboration features, and progress tracking built with MERN stack.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">JWT</span>
+                        </div>
+                        <div class="portfolio-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">20+</div>
+                                <div class="stat-label">Features</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">4</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Real-time</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Responsive Landing Pages</h3>
+                        <p class="portfolio-description">
+                            Collection of modern, responsive landing pages for various businesses
+                            with optimized performance and conversion-focused design patterns.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">SASS</span>
+                        </div>
+                        <div class="portfolio-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">10+</div>
+                                <div class="stat-label">Pages</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1</div>
+                                <div class="stat-label">Month</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Responsive</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">Data Analytics Dashboard</h3>
+                        <p class="portfolio-description">
+                            Interactive dashboard for data visualization and analytics with
+                            real-time charts, filtering capabilities, and export functionality.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        <div class="portfolio-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">8+</div>
+                                <div class="stat-label">Charts</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1000+</div>
+                                <div class="stat-label">Data Points</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="portfolio-title">WordPress Websites</h3>
+                        <p class="portfolio-description">
+                            Custom WordPress themes and plugins development for various clients
+                            with focus on performance, SEO, and user experience optimization.
+                        </p>
+                        <div class="portfolio-tech">
+                            <span class="tech-tag">WordPress</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">jQuery</span>
+                            <span class="tech-tag">ACF</span>
+                        </div>
+                        <div class="portfolio-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">5+</div>
+                                <div class="stat-label">Sites</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">Months</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">90+</div>
+                                <div class="stat-label">PageSpeed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section" id="experience">
+            <h2 class="section-title">My <span>Experience</span></h2>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Full Stack Developer</h3>
+                        <div class="timeline-company">Tech Solutions Inc.</div>
+                        <div class="timeline-date">Jan 2023 - Present</div>
+                        <p class="timeline-description">
+                            Leading the development of web applications using modern technologies
+                            and frameworks. Collaborating with cross-functional teams to deliver
+                            high-quality software solutions.
+                        </p>
+                        <ul class="timeline-achievements">
+                            <li>Developed 10+ responsive web applications using React.js and Node.js</li>
+                            <li>Improved application performance by 40% through optimization techniques</li>
+                            <li>Mentored 3 junior developers and conducted code reviews</li>
+                            <li>Implemented CI/CD pipelines reducing deployment time by 60%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Frontend Developer</h3>
+                        <div class="timeline-company">Digital Agency Pro</div>
+                        <div class="timeline-date">Jun 2022 - Dec 2022</div>
+                        <p class="timeline-description">
+                            Specialized in creating engaging user interfaces and ensuring
+                            optimal user experience across various devices and browsers.
+                        </p>
+                        <ul class="timeline-achievements">
+                            <li>Built 15+ landing pages with 95% client satisfaction rate</li>
+                            <li>Reduced page load times by 50% through code optimization</li>
+                            <li>Collaborated with design team to implement pixel-perfect designs</li>
+                            <li>Maintained and updated existing client websites</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">WordPress Developer</h3>
+                        <div class="timeline-company">Freelance</div>
+                        <div class="timeline-date">Jan 2022 - May 2022</div>
+                        <p class="timeline-description">
+                            Provided WordPress development services to small and medium businesses,
+                            creating custom themes and optimizing website performance.
+                        </p>
+                        <ul class="timeline-achievements">
+                            <li>Delivered 8 custom WordPress websites</li>
+                            <li>Developed 3 custom plugins for specific client needs</li>
+                            <li>Achieved 90+ PageSpeed scores on all projects</li>
+                            <li>Provided ongoing maintenance and support services</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Download Section -->
+        <section class="section" id="resume">
+            <h2 class="section-title">Download <span>Resume</span></h2>
+            <div class="text-center">
+                <div class="resume-card"
+                    style="max-width: 600px; margin: 0 auto; padding: 3rem; border-radius: 20px; backdrop-filter: blur(20px); border: 1px solid rgba(255, 71, 87, 0.1);">
+                    <div class="resume-icon" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 2rem;">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary-color);">
+                        Get My Complete Resume
+                    </h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem; opacity: 0.9;">
+                        Download my detailed resume to learn more about my experience, education,
+                        certifications, and technical skills. Updated with latest projects and achievements.
+                    </p>
+                    <a href="#" class="resume-download-btn"
+                        style="display: inline-flex; align-items: center; gap: 1rem; padding: 1.2rem 2.5rem; background: var(--gradient-primary); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);">
+                        <i class="fas fa-download"></i>
+                        Download Resume (PDF)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.className = currentTheme + '-theme';
+
+        // Update icon based on current theme
+        if (currentTheme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('light-theme')) {
+                body.className = 'dark-theme';
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.className = 'light-theme';
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Mobile Menu Functionality
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+
+        // Navigation Active State
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const href = item.getAttribute('href');
+
+                // Only prevent default for # links
+                if (href === '#') {
+                    e.preventDefault();
+                    return;
+                }
+
+                // For internal links, handle smooth scrolling if needed
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(href)?.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+                // For other links, allow normal navigation
+
+                // Add active class and ripple effect
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+
+                // Mobile menu handling
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                    mobileToggle.querySelector('i').className = 'fas fa-bars';
+                }
+            });
+        });
+
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Resume Download Hover Effect
+        const resumeBtn = document.querySelector('.resume-download-btn');
+        if (resumeBtn) {
+            resumeBtn.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+                this.style.boxShadow = '0 20px 40px rgba(255, 71, 87, 0.4)';
+            });
+
+            resumeBtn.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 10px 30px rgba(255, 71, 87, 0.3)';
+            });
+        }
+
+        // Add dynamic theme styles for resume card
+        const style = document.createElement('style');
+        style.textContent = `
+            .light-theme .resume-card {
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            }
+            
+            .dark-theme .resume-card {
+                background: rgba(255, 255, 255, 0.05);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.skill-category, .portfolio-card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
