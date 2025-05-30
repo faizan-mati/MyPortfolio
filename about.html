@@ -7,796 +7,8 @@
     <title>About - Almi Mouraad</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #FF4757;
-            --primary-dark: #e63946;
-            --bg-light: #f8f9fa;
-            --bg-dark: #0a0a0a;
-            --text-light: #333;
-            --text-dark: #fff;
-            --sidebar-light: #fff;
-            --sidebar-dark: #1a1a1a;
-            --card-light: #fff;
-            --card-dark: #333;
-            --gradient-primary: linear-gradient(135deg, #FF4757, #ff6b7a);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-        }
+    <link rel="stylesheet" href="./assess/cs/about.css">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-x: hidden;
-        }
-
-        /* Light Theme */
-        body.light-theme {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--text-light);
-        }
-
-        /* Dark Theme */
-        body.dark-theme {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
-            color: var(--text-dark);
-        }
-
-        /* Modern Sidebar Styles */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 250px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .light-theme .sidebar {
-            background: rgba(255, 255, 255, 0.95);
-            border-right: 1px solid rgba(255, 71, 87, 0.1);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark-theme .sidebar {
-            background: rgba(26, 26, 26, 0.95);
-            border-right: 1px solid rgba(255, 71, 87, 0.2);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .logo {
-            padding: 2.5rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0.05;
-            transition: all 0.6s ease;
-            z-index: -1;
-        }
-
-        .logo:hover::before {
-            left: 0;
-        }
-
-        .logo h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        .logo h2::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -15px;
-            width: 20px;
-            height: 20px;
-            border-top: 4px solid var(--primary-color);
-            border-left: 4px solid var(--primary-color);
-            border-radius: 3px;
-            opacity: 0.8;
-            animation: pulse 2s infinite;
-        }
-
-        .logo h2::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: -15px;
-            width: 20px;
-            height: 20px;
-            border-bottom: 4px solid var(--primary-color);
-            border-right: 4px solid var(--primary-color);
-            border-radius: 3px;
-            opacity: 0.8;
-            animation: pulse 2s infinite 1s;
-        }
-
-        /* Centered Navigation Menu */
-        .nav-menu {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            padding: 2rem 1.5rem;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 1.2rem 2rem;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 15px;
-            position: relative;
-            width: 100%;
-            max-width: 220px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .light-theme .nav-item {
-            color: var(--text-light);
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .dark-theme .nav-item {
-            color: var(--text-dark);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: -1;
-        }
-
-        .nav-item:hover::before,
-        .nav-item.active::before {
-            left: 0;
-        }
-
-        .nav-item:hover,
-        .nav-item.active {
-            color: white;
-            transform: translateX(10px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
-        }
-
-        .nav-item i {
-            margin-right: 1rem;
-            font-size: 1.3rem;
-            width: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item:hover i {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .nav-item span {
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* Footer in sidebar */
-        .sidebar-footer {
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 71, 87, 0.1);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .social-link:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: 300px;
-            min-height: 100vh;
-            padding: 2rem;
-            position: relative;
-        }
-
-        /* Modern Theme Toggle */
-        .theme-toggle {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            color: white;
-            font-size: 1.4rem;
-            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.5);
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 3rem 0;
-            min-height: 100vh;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-
-        .about-intro {
-            margin-bottom: 4rem;
-        }
-
-        .about-intro h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .about-intro h2 .highlight {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .about-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            opacity: 0.9;
-            margin-bottom: 3rem;
-        }
-
-        /* Personal Info Cards */
-        .personal-info {
-            margin-bottom: 4rem;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            padding: 1.5rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 71, 87, 0.1);
-        }
-
-        .light-theme .info-item {
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .dark-theme .info-item {
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .info-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.15);
-        }
-
-        .info-label {
-            font-weight: 700;
-            margin-right: 1rem;
-            min-width: 100px;
-            color: var(--primary-color);
-        }
-
-        .info-value {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Skills Section */
-        .skills-section {
-            margin-bottom: 4rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-
-        .skill-item {
-            margin-bottom: 2rem;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-
-        .skill-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .skill-percentage {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .skill-bar {
-            height: 8px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .light-theme .skill-bar {
-            background: rgba(0, 0, 0, 0.1);
-        }
-
-        .dark-theme .skill-bar {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: var(--gradient-primary);
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .skill-progress::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        /* Timeline Sections */
-        .timeline-section {
-            margin-bottom: 4rem;
-        }
-
-        .timeline-section h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-            text-align: center;
-        }
-
-        .timeline-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 3rem;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 71, 87, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .light-theme .timeline-item {
-            background: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .dark-theme .timeline-item {
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.15);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.8rem;
-            top: 2rem;
-            width: 15px;
-            height: 15px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            border: 3px solid;
-        }
-
-        .light-theme .timeline-item::before {
-            border-color: rgba(255, 255, 255, 0.95);
-        }
-
-        .dark-theme .timeline-item::before {
-            border-color: rgba(26, 26, 26, 0.95);
-        }
-
-        .timeline-date {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .timeline-date i {
-            margin-right: 0.5rem;
-        }
-
-        .timeline-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .timeline-description {
-            line-height: 1.7;
-            opacity: 0.9;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .btn-primary-custom {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            display: inline-block;
-            margin: 0 0.5rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
-        }
-
-        .btn-primary-custom::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
-            transition: all 0.6s ease;
-        }
-
-        .btn-primary-custom:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(255, 71, 87, 0.4);
-            color: white;
-        }
-
-        /* Mobile Responsiveness */
-        .mobile-toggle {
-            display: none;
-            position: fixed;
-            top: 1.5rem;
-            left: 1.5rem;
-            z-index: 1001;
-            background: var(--gradient-primary);
-            color: white;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 12px;
-            font-size: 1.3rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(255, 71, 87, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(-100%);
-                width: 280px;
-            }
-
-            .sidebar.show {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 1.5rem;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .about-section {
-                padding-top: 5rem;
-            }
-
-            .section-title {
-                font-size: 2.8rem;
-            }
-
-            .about-intro h2 {
-                font-size: 1.8rem;
-            }
-
-            .timeline-container {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .theme-toggle {
-                top: 1.5rem;
-                right: 5rem;
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .about-intro h2 {
-                font-size: 1.5rem;
-            }
-
-            .main-content {
-                padding: 1rem;
-            }
-
-            .timeline-container {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline {
-                padding-left: 1.5rem;
-            }
-
-            .timeline-item {
-                padding: 1.5rem;
-            }
-
-            .timeline-item::before {
-                left: -2.3rem;
-            }
-
-            .nav-item {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .sidebar {
-                width: 250px;
-            }
-        }
-
-        /* Overlay for mobile */
-        .overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            z-index: 999;
-            transition: all 0.3s ease;
-        }
-
-        .overlay.show {
-            display: block;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 0.8;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 100%;
-            }
-        }
-
-        /* Animation delays for content */
-        .section-title {
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            opacity: 0;
-            animation-delay: 0.2s;
-        }
-
-        .about-intro {
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            opacity: 0;
-            animation-delay: 0.4s;
-        }
-
-        .personal-info {
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            opacity: 0;
-            animation-delay: 0.6s;
-        }
-
-        .skills-section {
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            opacity: 0;
-            animation-delay: 0.8s;
-        }
-
-        .timeline-section {
-            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            opacity: 0;
-            animation-delay: 1s;
-        }
-    </style>
 </head>
 
 <body class="light-theme">
@@ -811,11 +23,11 @@
     <!-- Modern Sidebar -->
     <div class="sidebar" id="sidebar">
         <div class="logo">
-            <h2>Atlas</h2>
+            <h2>Portfolio</h2>
         </div>
 
-      <nav class="nav-menu">
-            <a href="./index.html" class="nav-item ">
+        <nav class="nav-menu">
+            <a href="./index.html" class="nav-item">
                 <i class="fas fa-home"></i>
                 <span>Home</span>
             </a>
@@ -839,17 +51,23 @@
 
         <div class="sidebar-footer">
             <div class="social-links">
-                <a href="#" class="social-link">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#" class="social-link">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/faizan-mati/?originalSubdomain=pk" class="social-link"
+                    target="_blank">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="#" class="social-link">
-                    <i class="fab fa-dribbble"></i>
+                <!-- GitHub -->
+                <a href="https://github.com/faizan-mati" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <!-- Instagram -->
+                <a href="https://wa.me/923243354582?text=Hi%20there!%20I%20visited%20your%20portfolio%20and%20wanted%20to%20connect."
+                    class="social-link" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
                 </a>
             </div>
         </div>
+
     </div>
 
     <!-- Main Content -->
@@ -860,15 +78,17 @@
 
             <!-- About Introduction -->
             <div class="about-intro">
-                <h2>I'm Sajid Ali and <span class="highlight">Web Developer</span></h2>
+                <h2>I'm Faizan Mati and <span class="highlight">Web Developer</span></h2>
                 <p class="about-description">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae aspernatur mollitia officia rem
-                    doloreaque!
-                    Esse veniam vel repellat ipsa molestiae consequatur vitae! Quis vitae fuga, eos aperiam a officiis
-                    nobis? Esse veniam
-                    vel repellat ipsa molestiae consequatur vitae! Quis vitae fuga, eos ape esse veniam vel repellat
-                    ipsa molestiae
-                    consequatur vitae! Quis vitae fuga, eos ape
+                    Hello! I'm Faizan Mati, a passionate Full Stack Developer with 1.5+ years of experience building
+                    scalable web applications and leading development teams.
+                    <!-- <br> -->
+                    Currently, I'm a Software Engineer & Team Lead at AI Ameera Apparel, leading a team of 3 developers
+                    and improving operational efficiency by 30%. I'm also the founder of EVO TECH STUDIO, a digital
+                    agency maintaining 100% client satisfaction.
+                    <!-- <br> -->
+                    My expertise includes PHP, MySQL, JavaScript, C# .NET, React.js, and Next.js. I'm passionate about
+                    creating digital solutions that drive real business impact.
                 </p>
             </div>
 
@@ -876,45 +96,21 @@
             <div class="personal-info">
                 <div class="info-grid">
                     <div class="info-item">
-                        <span class="info-label">Birthday :</span>
-                        <span class="info-value">5 June 1999</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Age :</span>
-                        <span class="info-value">19</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Website :</span>
-                        <span class="info-value">www.domain.com</span>
-                    </div>
-                    <div class="info-item">
                         <span class="info-label">Email :</span>
-                        <span class="info-value">info@gmail.com</span>
+                        <span class="info-value" style="margin-left: -15px;">faizanmatee@gmail.com </span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">Degree :</span>
-                        <span class="info-value">CS</span>
+                        <span class="info-label">Phone No :</span>
+                        <span class="info-value">+92 324 3354583 </span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">Phone :</span>
-                        <span class="info-value">+93 000 1999</span>
+                        <span class="info-label">Address :</span>
+                        <span class="info-value">Korangi, Karachi, Pakistan</span>
                     </div>
-                    <div class="info-item">
-                        <span class="info-label">City :</span>
-                        <span class="info-value">Rawalpindi</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">Freelance :</span>
-                        <span class="info-value">Available</span>
-                    </div>
+
                 </div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons">
-                <a href="#" class="btn-primary-custom">Download CV</a>
-                <a href="#" class="btn-primary-custom">Hire Me</a>
-            </div>
 
             <!-- Skills Section -->
             <div class="skills-section">
@@ -973,25 +169,39 @@
                         <div class="timeline-item">
                             <div class="timeline-date">
                                 <i class="fas fa-calendar-alt"></i>
-                                2013 - 2015
+                                2024 - 2028 (In Progress)
                             </div>
-                            <h4 class="timeline-title">Master In Computer Science</h4>
+                            <h4 class="timeline-title">Bachelor of Science in Computer Science</h4>
                             <p class="timeline-description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem reiciendis voluptatem
-                                atque non adipisci enim veniam architecto neque quasi, sit explicabo necessitatibus
-                                repudiandae aut ea.
+                                Currently pursuing my bachelor's degree with focus on advanced programming concepts,
+                                data structures & algorithms, database management systems, and software engineering
+                                principles. Gaining comprehensive knowledge in web development and object-oriented
+                                programming to strengthen my full-stack development expertise.
                             </p>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-date">
                                 <i class="fas fa-calendar-alt"></i>
-                                2013 - 2015
+                                2021 - 2024
                             </div>
-                            <h4 class="timeline-title">Master In Computer Science</h4>
+                            <h4 class="timeline-title">Diploma of Associate Engineering (CIT)</h4>
                             <p class="timeline-description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem reiciendis voluptatem
-                                atque non adipisci enim veniam architecto neque quasi, sit explicabo necessitatibus
-                                repudiandae aut ea.
+                                Completed comprehensive program in Computer Information Technology covering programming
+                                fundamentals, database systems, and core IT concepts. This foundation provided me with
+                                essential technical skills that I've successfully applied in my professional development
+                                career.
+                            </p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                2019 - 2021
+                            </div>
+                            <h4 class="timeline-title">Secondary School Certificate (Matriculation)</h4>
+                            <p class="timeline-description">
+                                Completed secondary education with strong academic performance, building the analytical
+                                and problem-solving foundation that supports my technical career in software
+                                development.
                             </p>
                         </div>
                     </div>
@@ -999,37 +209,52 @@
             </div>
 
             <div class="timeline-section">
-                <h3>Experience</h3>
+                <h3>Certifications </h3>
                 <div class="timeline-container">
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-date">
                                 <i class="fas fa-calendar-alt"></i>
-                                2013 - 2015
+                                December 2023 - April 2024
                             </div>
-                            <h4 class="timeline-title">Master In Computer Science</h4>
+                            <h4 class="timeline-title">MERN Stack Developer Certification</h4>
                             <p class="timeline-description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem reiciendis voluptatem
-                                atque non adipisci enim veniam architecto neque quasi, sit explicabo necessitatibus
-                                repudiandae aut ea.
+                                Intensive certification program covering MongoDB, Express.js, React.js, and Node.js.
+                                Gained hands-on experience building full-stack web applications using modern JavaScript
+                                technologies and best practices in web development.
                             </p>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-date">
                                 <i class="fas fa-calendar-alt"></i>
-                                2013 - 2015
+                                January 2023 - June 2023
                             </div>
-                            <h4 class="timeline-title">Master In Computer Science</h4>
+                            <h4 class="timeline-title">Advanced Web Application Development</h4>
                             <p class="timeline-description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem reiciendis voluptatem
-                                atque non adipisci enim veniam architecto neque quasi, sit explicabo necessitatibus
-                                repudiandae aut ea.
+                                Comprehensive training in advanced web development concepts including PHP, MySQL, and
+                                modern web technologies. This certification directly contributed to my successful
+                                development of the Institute Management.
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="resume-section" style="text-align: center; margin-bottom: 4rem;">
+            <h2 class="section-title1">Download Resume</h2>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="./assess/resume/FAIZAN MATI (1).pdf" target="_blank" class="resume-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i>
+                    <span>Download PDF Resume</span>
+                </a>
+                <a href="./assess/resume/FAIZAN MATI (1).pdf" target="_blank" class="resume-btn view-btn" id="viewBtn">
+                    <i class="fas fa-eye"></i>
+                    <span>View Online Resume</span>
+                </a>
+            </div>
+        </section>
+
     </div>
 
     <!-- Theme Toggle Button -->
@@ -1038,132 +263,8 @@
     </button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Theme Toggle Functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const themeIcon = themeToggle.querySelector('i');
+    <script src="./assess/js/script.js"></script>
 
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        body.className = currentTheme + '-theme';
-        updateThemeIcon(currentTheme);
-
-        themeToggle.addEventListener('click', () => {
-            if (body.classList.contains('light-theme')) {
-                body.className = 'dark-theme';
-                localStorage.setItem('theme', 'dark');
-                updateThemeIcon('dark');
-            } else {
-                body.className = 'light-theme';
-                localStorage.setItem('theme', 'light');
-                updateThemeIcon('light');
-            }
-        });
-
-        function updateThemeIcon(theme) {
-            if (theme === 'dark') {
-                themeIcon.className = 'fas fa-moon';
-            } else {
-                themeIcon.className = 'fas fa-sun';
-            }
-        }
-
-        // Mobile Menu Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-
-        mobileToggle.addEventListener('click', () => {
-            sidebar.classList.add('show');
-            overlay.classList.add('show');
-        });
-
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('show');
-            overlay.classList.remove('show');
-        });
-
-        // Skill Progress Animation
-        function animateSkills() {
-            const skillBars = document.querySelectorAll('.skill-progress');
-
-            skillBars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                bar.style.width = '0%';
-
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 500);
-            });
-        }
-
-        // Trigger skill animation when page loads
-        window.addEventListener('load', () => {
-            setTimeout(animateSkills, 1000);
-        });
-
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach((item) => {
-            item.addEventListener('click', (e) => {
-                // Only prevent default if it's a # link
-                if (item.getAttribute('href') === '#') {
-                    e.preventDefault();
-                }
-                
-                // Remove active class from all items
-                navItems.forEach(nav => nav.classList.remove('active'));
-                // Add active class to clicked item
-                item.classList.add('active');
-
-                // Add ripple effect
-                const ripple = document.createElement('span');
-                ripple.style.position = 'absolute';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
-                ripple.style.transform = 'scale(0)';
-                ripple.style.animation = 'ripple 0.6s linear';
-                ripple.style.left = '50%';
-                ripple.style.top = '50%';
-                ripple.style.width = '100px';
-                ripple.style.height = '100px';
-                ripple.style.marginLeft = '-50px';
-                ripple.style.marginTop = '-50px';
-                item.appendChild(ripple);
-
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
-
-                // Close mobile menu
-                if (window.innerWidth <= 992) {
-                    sidebar.classList.remove('show');
-                    overlay.classList.remove('show');
-                    mobileToggle.querySelector('i').className = 'fas fa-bars';
-                }
-            });
-        });
-
-        // Add scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.section-title, .about-intro, .personal-info, .skills-section, .timeline-section').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
 </body>
 
 </html>

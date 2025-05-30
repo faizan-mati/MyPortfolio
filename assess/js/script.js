@@ -160,8 +160,8 @@ document.head.appendChild(style);
 // Typing animation for name and title
 const nameElement = document.getElementById('typing-name');
 const titleElement = document.getElementById('typing-title');
-const nameText = "Almi Mouraad";
-const titles = ["Graphic Designer", "Web Developer", "UI/UX Designer"];
+const nameText = "Faizan Mati";
+const titles = ["Web Developer", "UI/UX Designer"];
 let nameIndex = 0;
 let titleIndex = 0;
 let currentTitleIndex = 0;
