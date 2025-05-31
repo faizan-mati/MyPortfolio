@@ -1,139 +1,205 @@
 
-// Theme Toggle Functionality
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-const themeIcon = themeToggle.querySelector('i');
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-body.className = currentTheme + '-theme';
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light-theme';
+        body.className = savedTheme;
+        updateThemeIcon(savedTheme);
 
-// Update icon based on current theme
-if (currentTheme === 'dark') {
-    themeIcon.className = 'fas fa-sun';
-} else {
-    themeIcon.className = 'fas fa-moon';
-}
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.classList.contains('light-theme') ? 'light-theme' : 'dark-theme';
+            const newTheme = currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
+            
+            body.className = newTheme;
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
 
-themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('light-theme')) {
-        body.className = 'dark-theme';
-        themeIcon.className = 'fas fa-sun';
-        localStorage.setItem('theme', 'dark');
-    } else {
-        body.className = 'light-theme';
-        themeIcon.className = 'fas fa-moon';
-        localStorage.setItem('theme', 'light');
-    }
-});
-
-// Mobile Menu Functionality
-const mobileToggle = document.getElementById('mobileToggle');
-const sidebar = document.getElementById('sidebar');
-const overlay = document.getElementById('overlay');
-
-mobileToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('show');
-    overlay.classList.toggle('show');
-});
-
-overlay.addEventListener('click', () => {
-    sidebar.classList.remove('show');
-    overlay.classList.remove('show');
-});
-
-// Navigation Active State
-document.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', (e) => {
-        const href = item.getAttribute('href');
-
-        // Only prevent default for # links
-        if (href === '#') {
-            e.preventDefault();
-            return;
+        function updateThemeIcon(theme) {
+            if (theme === 'dark-theme') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
         }
 
-        // For internal links, handle smooth scrolling if needed
-        if (href.startsWith('#')) {
-            e.preventDefault();
-            document.querySelector(href)?.scrollIntoView({
-                behavior: 'smooth'
-            });
-        }
-        // For other links, allow normal navigation
+        // Mobile Menu Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
 
-        // Add active class and ripple effect
-        navItems.forEach(nav => nav.classList.remove('active'));
-        item.classList.add('active');
+        mobileToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        });
 
-        // Mobile menu handling
-        if (window.innerWidth <= 992) {
+        overlay.addEventListener('click', () => {
             sidebar.classList.remove('show');
             overlay.classList.remove('show');
-            mobileToggle.querySelector('i').className = 'fas fa-bars';
-        }
-    });
-});
+        });
 
-// Smooth Scroll for Navigation
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+        // Close mobile menu when clicking nav items
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                }
+            });
+        });
+
+        // Smooth scroll behavior for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe portfolio cards for animation
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Preloader effect
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add hover sound effect (optional - commented out to avoid audio issues)
+        /*
+        const hoverSound = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBSuBzvLZiTUFGWm98N2IQAm2L3LLaM9ZzAHqxT+aNAL3uj1SYCzexTWaNAJ3uj1SYCfkxT+Zbj...');
+        
+        document.querySelectorAll('.nav-item, .portfolio-card, .resume-btn').forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                // hoverSound.currentTime = 0;
+                // hoverSound.play().catch(() => {});
+            });
+        });
+        */
+
+        // Enhanced portfolio card interactions
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic greeting based on time
+        function updateGreeting() {
+            const hour = new Date().getHours();
+            const greetingElement = document.querySelector('.greeting');
+            
+            if (greetingElement) {
+                let greeting;
+                if (hour < 12) greeting = 'Good Morning';
+                else if (hour < 17) greeting = 'Good Afternoon'; 
+                else greeting = 'Good Evening';
+                
+                greetingElement.textContent = greeting;
+            }
+        }
+
+        // Initialize greeting
+        updateGreeting();
+
+        // Add loading states for demo buttons
+        document.querySelectorAll('.demo-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Loading...</span>';
+                this.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.pointerEvents = 'auto';
+                    
+                    // Show the alert after loading
+                    const projectName = this.closest('.portfolio-card').querySelector('.portfolio-title').textContent;
+                    alert(`Demo link for ${projectName} - This would normally open the live project!`);
+                }, 1000);
+            });
+        });
+
+        // Performance optimization - lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
             });
         }
-    });
-});
 
-// Resume Download Hover Effect
-const resumeBtn = document.querySelector('.resume-download-btn');
-if (resumeBtn) {
-    resumeBtn.addEventListener('mouseenter', function () {
-        this.style.transform = 'translateY(-5px) scale(1.05)';
-        this.style.boxShadow = '0 20px 40px rgba(255, 71, 87, 0.4)';
-    });
-
-    resumeBtn.addEventListener('mouseleave', function () {
-        this.style.transform = 'translateY(0) scale(1)';
-        this.style.boxShadow = '0 10px 30px rgba(255, 71, 87, 0.3)';
-    });
-}
-
-// Add dynamic theme styles for resume card
-const style = document.createElement('style');
-style.textContent = `
-            .light-theme .resume-card {
-                background: rgba(255, 255, 255, 0.9);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            }
+        // Add parallax effect to portfolio section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0;
             
-            .dark-theme .resume-card {
-                background: rgba(255, 255, 255, 0.05);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            document.querySelectorAll('.portfolio-image').forEach(image => {
+                image.style.transform = `translate3d(0, ${rate}px, 0)`;
+            });
+        });
+
+        // Enhanced accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                sidebar.classList.remove('show');
+                overlay.classList.remove('show');
             }
-        `;
-document.head.appendChild(style);
+        });
 
-// Intersection Observer for animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe all animated elements
-document.querySelectorAll('.skill-category, .portfolio-card, .timeline-item').forEach(el => {
-    observer.observe(el);
-});
+        // Focus management for accessibility
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('focus', () => {
+                item.style.outline = '2px solid var(--primary-color)';
+                item.style.outlineOffset = '2px';
+            });
+            
+            item.addEventListener('blur', () => {
+                item.style.outline = 'none';
+            });
+        });
