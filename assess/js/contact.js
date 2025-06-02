@@ -1,4 +1,3 @@
-
 // Theme Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
@@ -19,11 +18,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 function updateThemeIcon(theme) {
-    if (theme === 'dark') {
-        themeIcon.className = 'fas fa-sun';
-    } else {
-        themeIcon.className = 'fas fa-moon';
-    }
+    themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
 
 // Mobile Sidebar Toggle
@@ -41,37 +36,44 @@ overlay.addEventListener('click', () => {
     overlay.classList.remove('show');
 });
 
-// Contact Form Submission
+// Contact Form Submission with Formspree
 const contactForm = document.getElementById('contactForm');
+const submitBtn = document.querySelector('.submit-btn');
+const originalBtnContent = submitBtn.innerHTML;
 
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const phone = formData.get('phone');
-    const subject = formData.get('subject');
-    const message = formData.get('message');
+    // Add loading animation
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
+    submitBtn.disabled = true;
 
-    // Create WhatsApp message
-    const whatsappMessage = `Hi Faizan! I'm ${name}.\n\nEmail: ${email}\nPhone: ${phone || 'Not provided'}\n\nSubject: ${subject}\n\nMessage: ${message}`;
+    const form = e.target;
+    const data = new FormData(form);
 
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(whatsappMessage);
+    try {
+        const response = await fetch(form.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
 
-    // Open WhatsApp with the message
-    const whatsappURL = `https://wa.me/923243354582?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
+        if (response.ok) {
+            alert('Thank you! Your message has been sent.');
+            form.reset();
+        } else {
+            alert('Oops! There was a problem submitting your form.');
+        }
+    } catch (error) {
+        alert('Network error. Please try again later.');
+    }
 
-    // Show success message
-    alert('Thank you for your message! You\'ll be redirected to WhatsApp to send the message.');
-
-    // Reset form
-    contactForm.reset();
+    // Reset button after 2 seconds
+    setTimeout(() => {
+        submitBtn.innerHTML = originalBtnContent;
+        submitBtn.disabled = false;
+    }, 2000);
 });
-
 
 // Smooth scrolling for internal links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -87,21 +89,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add loading animation for form submission
-const submitBtn = document.querySelector('.submit-btn');
-const originalBtnContent = submitBtn.innerHTML;
-
-contactForm.addEventListener('submit', () => {
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Sending...</span>';
-    submitBtn.disabled = true;
-
-    // Reset button after 2 seconds
-    setTimeout(() => {
-        submitBtn.innerHTML = originalBtnContent;
-        submitBtn.disabled = false;
-    }, 2000);
-});
-
 // Add hover effects for contact items
 const contactItems = document.querySelectorAll('.contact-item');
 contactItems.forEach(item => {
@@ -114,7 +101,7 @@ contactItems.forEach(item => {
     });
 });
 
-// Add click to copy functionality for contact info
+// Click to copy functionality for contact info
 const emailItem = document.querySelector('.contact-item:first-child');
 const phoneItem = document.querySelector('.contact-item:nth-child(2)');
 
@@ -131,26 +118,24 @@ phoneItem.addEventListener('click', () => {
 });
 
 function showCopyNotification(message) {
-    // Create notification element
     const notification = document.createElement('div');
     notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: var(--gradient-primary);
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 10px;
-                box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
-                z-index: 9999;
-                animation: slideInRight 0.3s ease;
-                font-weight: 600;
-            `;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--gradient-primary);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(255, 71, 87, 0.3);
+        z-index: 9999;
+        animation: slideInRight 0.3s ease;
+        font-weight: 600;
+    `;
     notification.textContent = message;
 
     document.body.appendChild(notification);
 
-    // Remove notification after 3 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOutRight 0.3s ease';
         setTimeout(() => {
@@ -162,26 +147,26 @@ function showCopyNotification(message) {
 // Add CSS animations for notifications
 const style = document.createElement('style');
 style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes slideOutRight {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-        `;
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
 document.head.appendChild(style);

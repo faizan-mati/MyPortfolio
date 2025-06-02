@@ -1,40 +1,24 @@
-
-// Fixed Theme Toggle Functionality
+// Theme Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const themeIcon = themeToggle.querySelector('i');
 
-// Initialize with light theme
-let currentTheme = 'light';
-updateThemeIcon(currentTheme);
+// Load saved theme or default to light
+const savedTheme = localStorage.getItem('theme') || 'light';
+body.className = `${savedTheme}-theme`;
+updateThemeIcon(savedTheme);
 
 themeToggle.addEventListener('click', () => {
-    // Toggle between light and dark themes
-    if (currentTheme === 'light') {
-        currentTheme = 'dark';
-        body.classList.remove('light-theme');
-        body.classList.add('dark-theme');
-    } else {
-        currentTheme = 'light';
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-    }
+    const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
-    updateThemeIcon(currentTheme);
-
-    // Add animation feedback
-    themeToggle.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-        themeToggle.style.transform = '';
-    }, 150);
+    body.className = `${newTheme}-theme`;
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
 });
 
 function updateThemeIcon(theme) {
-    if (theme === 'dark') {
-        themeIcon.className = 'fas fa-sun';
-    } else {
-        themeIcon.className = 'fas fa-moon';
-    }
+    themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 }
 
 // Enhanced Mobile Menu Toggle
@@ -46,13 +30,8 @@ mobileToggle.addEventListener('click', () => {
     sidebar.classList.toggle('show');
     overlay.classList.toggle('show');
 
-    // Animate hamburger icon
     const icon = mobileToggle.querySelector('i');
-    if (sidebar.classList.contains('show')) {
-        icon.className = 'fas fa-times';
-    } else {
-        icon.className = 'fas fa-bars';
-    }
+    icon.className = sidebar.classList.contains('show') ? 'fas fa-times' : 'fas fa-bars';
 });
 
 overlay.addEventListener('click', () => {
@@ -65,17 +44,11 @@ overlay.addEventListener('click', () => {
 const navItems = document.querySelectorAll('.nav-item');
 navItems.forEach((item) => {
     item.addEventListener('click', (e) => {
-        // Only prevent default if it's a # link
-        if (item.getAttribute('href') === '#') {
-            e.preventDefault();
-        }
+        if (item.getAttribute('href') === '#') e.preventDefault();
 
-        // Remove active class from all items
         navItems.forEach(nav => nav.classList.remove('active'));
-        // Add active class to clicked item
         item.classList.add('active');
 
-        // Add ripple effect
         const ripple = document.createElement('span');
         ripple.style.position = 'absolute';
         ripple.style.borderRadius = '50%';
@@ -90,11 +63,8 @@ navItems.forEach((item) => {
         ripple.style.marginTop = '-50px';
         item.appendChild(ripple);
 
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
+        setTimeout(() => ripple.remove(), 600);
 
-        // Close mobile menu
         if (window.innerWidth <= 992) {
             sidebar.classList.remove('show');
             overlay.classList.remove('show');
@@ -131,7 +101,6 @@ const ctaButton = document.querySelector('.cta-button');
 ctaButton.addEventListener('mouseenter', () => {
     ctaButton.style.transform = 'translateY(-5px) scale(1.05)';
 });
-
 ctaButton.addEventListener('mouseleave', () => {
     ctaButton.style.transform = 'translateY(0) scale(1)';
 });
@@ -148,13 +117,13 @@ window.addEventListener('scroll', () => {
 // Add ripple animation to CSS
 const style = document.createElement('style');
 style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
 document.head.appendChild(style);
 
 // Typing animation for name and title
@@ -166,29 +135,16 @@ let nameIndex = 0;
 let titleIndex = 0;
 let currentTitleIndex = 0;
 let isDeleting = false;
-let isEnd = false;
 
 function typeName() {
     const currentText = nameText.substring(0, nameIndex);
     nameElement.innerHTML = currentText;
 
-    if (!isEnd) {
-        if (nameIndex < nameText.length) {
-            nameIndex++;
-            setTimeout(typeName, 100);
-        } else {
-            isEnd = true;
-            setTimeout(typeName, 2000); // Pause at end
-        }
-    } else {
-        if (nameIndex > 0) {
-            nameIndex--;
-            setTimeout(typeName, 50);
-        } else {
-            isEnd = false;
-            setTimeout(typeName, 500); // Pause at start
-        }
+    if (nameIndex < nameText.length) {
+        nameIndex++;
+        setTimeout(typeName, 100);
     }
+    // Stops after typing once
 }
 
 function typeTitle() {
@@ -198,25 +154,21 @@ function typeTitle() {
 
     if (!isDeleting && titleIndex === currentTitle.length) {
         isDeleting = true;
-        setTimeout(typeTitle, 2000); // Pause at end of typing
+        setTimeout(typeTitle, 2000);
     } else if (isDeleting && titleIndex === 0) {
         isDeleting = false;
         currentTitleIndex = (currentTitleIndex + 1) % titles.length;
-        setTimeout(typeTitle, 500); // Pause before typing next title
+        setTimeout(typeTitle, 500);
     } else {
-        if (isDeleting) {
-            titleIndex--;
-        } else {
-            titleIndex++;
-        }
+        titleIndex += isDeleting ? -1 : 1;
         setTimeout(typeTitle, isDeleting ? 50 : 100);
     }
 }
 
 // Start animations when page loads
-window.addEventListener('load', () => {
-    setTimeout(typeName, 1000);
-    setTimeout(typeTitle, 1500);
+window.addEventListener('load', () => { 
+    setTimeout(typeName, 1000);     // Name typed once
+    setTimeout(typeTitle, 1500);    // Titles loop forever
 
     // Add loading animation
     document.body.style.opacity = '0';
@@ -225,5 +177,3 @@ window.addEventListener('load', () => {
         document.body.style.opacity = '1';
     }, 100);
 });
-
-

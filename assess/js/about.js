@@ -1,31 +1,27 @@
-
 // Theme Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 const themeIcon = themeToggle.querySelector('i');
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-body.className = currentTheme + '-theme';
-updateThemeIcon(currentTheme);
+// Load saved theme or default to light
+const savedTheme = localStorage.getItem('theme') || 'light';
+body.className = `${savedTheme}-theme`;
+updateThemeIcon(savedTheme);
 
 themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('light-theme')) {
-        body.className = 'dark-theme';
-        localStorage.setItem('theme', 'dark');
-        updateThemeIcon('dark');
-    } else {
-        body.className = 'light-theme';
-        localStorage.setItem('theme', 'light');
-        updateThemeIcon('light');
-    }
+    const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    body.className = `${newTheme}-theme`;
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
 });
 
 function updateThemeIcon(theme) {
     if (theme === 'dark') {
-        themeIcon.className = 'fas fa-moon';
-    } else {
         themeIcon.className = 'fas fa-sun';
+    } else {
+        themeIcon.className = 'fas fa-moon';
     }
 }
 
@@ -123,3 +119,4 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.section-title, .about-intro, .personal-info, .skills-section, .timeline-section').forEach(el => {
     observer.observe(el);
 });
+

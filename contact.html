@@ -141,7 +141,7 @@
                         <i class="fas fa-paper-plane" style="margin-right: 1rem;"></i>Send Message
                     </h3>
 
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/xblyjgdq" method="POST">
                         <div class="form-group">
                             <label for="name">
                                 <i class="fas fa-user" style="margin-right: 0.5rem;"></i>Full Name
@@ -154,7 +154,7 @@
                             <label for="email">
                                 <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>Email Address
                             </label>
-                            <input type="email" id="email" name="email" class="form-control"
+                            <input type="email" id="email" name="_replyto" class="form-control"
                                 placeholder="Enter your email address" required>
                         </div>
 
@@ -187,12 +187,13 @@
                             <span>Send Message</span>
                         </button>
                     </form>
+
                 </div>
             </div>
         </section>
 
         <!-- Resume Section -->
-       <section class="resume-section" style="text-align: center; margin-bottom: 4rem;">
+        <section class="resume-section" style="text-align: center; margin-bottom: 4rem;">
             <h2 class="section-title1">Download Resume</h2>
             <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
                 <a href="./assess/resume/FAIZAN MATI (1).pdf" target="_blank" class="resume-btn" id="downloadBtn">
@@ -211,7 +212,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="./assess/js/contact.js"></script>
+    <script src="./assess/js/contact.js"></script>
 
 </body>
 

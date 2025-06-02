@@ -2,13 +2,13 @@
 // Complete JavaScript for Faizan Mati Portfolio Website
 
 // DOM Elements
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-const themeIcon = themeToggle.querySelector('i');
 const mobileToggle = document.getElementById('mobileToggle');
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
 const navItems = document.querySelectorAll('.nav-item');
+const themeToggle = document.getElementById('themeToggle');
+const body = document.body;
+const themeIcon = themeToggle.querySelector('i');
 
 // Theme Management
 class ThemeManager {
