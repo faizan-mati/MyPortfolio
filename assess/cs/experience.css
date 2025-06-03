@@ -894,3 +894,12 @@ body.dark-theme {
 }
 
 
+.whatsapp-btn {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-btn:hover {
+    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
+    color: white;
+}
