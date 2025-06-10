@@ -824,9 +824,14 @@ textarea.form-control {
     background: var(--primary-dark);
 }
 
-.contact-link {
-    color: var(--primary-color);
-    text-decoration: none;
+.dark-theme .contact-link {
+    color: var(--text-dark);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.light-theme .contact-link {
+    color: var(--text-light);
     font-weight: bold;
     transition: color 0.3s ease;
 }

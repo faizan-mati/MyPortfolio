@@ -674,7 +674,7 @@ body.dark-theme {
 }
 
 .expert {
-    background: var(--gradient-primary);
+     background: linear-gradient(135deg, #FF4757, #ff6b7a);
     color: white;
 }
 
